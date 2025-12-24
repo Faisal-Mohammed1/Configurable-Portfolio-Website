@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2025 at 05:25 PM
+-- Generation Time: Dec 24, 2025 at 05:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -76,35 +76,6 @@ INSERT INTO `experience` (`id`, `role_en`, `role_ar`, `company_en`, `company_ar`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profile_info`
---
-
-CREATE TABLE `profile_info` (
-  `id` int(11) NOT NULL,
-  `user_email` varchar(255) NOT NULL,
-  `display_name` varchar(100) DEFAULT 'John Doe',
-  `job_title` varchar(100) DEFAULT 'Software Engineer',
-  `hero_bio` text DEFAULT NULL,
-  `profile_image` varchar(255) DEFAULT 'assets/images/profile-placeholder.png',
-  `cv_link` varchar(255) DEFAULT '#',
-  `years_experience` int(11) DEFAULT 0,
-  `projects_completed` int(11) DEFAULT 0,
-  `technologies_mastered` int(11) DEFAULT 0,
-  `code_commits` int(11) DEFAULT 0,
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `logo_text` varchar(50) DEFAULT 'John'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `profile_info`
---
-
-INSERT INTO `profile_info` (`id`, `user_email`, `display_name`, `job_title`, `hero_bio`, `profile_image`, `cv_link`, `years_experience`, `projects_completed`, `technologies_mastered`, `code_commits`, `updated_at`, `logo_text`) VALUES
-(1, 'admin@example.com', 'John Doe', 'Software Engineer', 'As a Software Engineer, I design and build innovative software solutions, solve complex problems, and ensure systems are scalable and user-friendly. From creating web apps to optimizing backend systems, I bridge the gap between technology and user needs.', '', '#', 12, 25, 8, 500, '2025-12-24 13:22:51', 'John');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `site_settings`
 --
 
@@ -119,10 +90,6 @@ CREATE TABLE `site_settings` (
   `bio_ar` text DEFAULT NULL,
   `cv_url` varchar(255) DEFAULT NULL,
   `profile_image` varchar(255) DEFAULT 'assets/img/profile.png',
-  `stat1_val` varchar(20) DEFAULT NULL,
-  `stat2_val` varchar(20) DEFAULT NULL,
-  `stat3_val` varchar(20) DEFAULT NULL,
-  `stat4_val` varchar(20) DEFAULT NULL,
   `contact_phone` varchar(50) DEFAULT '+1 234 567 890',
   `contact_email` varchar(100) DEFAULT 'info@example.com',
   `contact_address` varchar(255) DEFAULT '123 Tech Street, Web City',
@@ -134,8 +101,8 @@ CREATE TABLE `site_settings` (
 -- Dumping data for table `site_settings`
 --
 
-INSERT INTO `site_settings` (`id`, `site_logo`, `full_name_en`, `full_name_ar`, `career_en`, `career_ar`, `bio_en`, `bio_ar`, `cv_url`, `profile_image`, `stat1_val`, `stat2_val`, `stat3_val`, `stat4_val`, `contact_phone`, `contact_email`, `contact_address`, `admin_username`, `admin_password`) VALUES
-(1, 'Faisal', 'Faisal', 'فيصل', 'Software Engineer', 'مهندس برمجيات', 'As a Software Engineer, I design and build innovative software solutions...', 'كمهندس برمجيات اصمم وابني حلول برمجية مبتكره...', 'assets/docs/1766556814_faisal_STEP.pdf', 'assets/img/1766583372_Profile-image.png', '12', '25', '8', '500', '+966555555555', 'info@example.com', 'Riyadh, Saudi Arabia', 'admin', '$2y$10$v8ga/utd/6hTF8veHHo/zuCQ5t07E0Bz2nhmT5f0agPBUupe7AbTi');
+INSERT INTO `site_settings` (`id`, `site_logo`, `full_name_en`, `full_name_ar`, `career_en`, `career_ar`, `bio_en`, `bio_ar`, `cv_url`, `profile_image`, `contact_phone`, `contact_email`, `contact_address`, `admin_username`, `admin_password`) VALUES
+(1, 'Faisal', 'Faisal', 'فيصل', 'Software Engineer', 'مهندس برمجيات', 'As a Software Engineer, I design and build innovative software solutions...', 'كمهندس برمجيات اصمم وابني حلول برمجية مبتكره...', '', 'assets/img/1766583372_Profile-image.png', '+966555555555', 'info@example.com', 'Riyadh, Saudi Arabia', 'admin', '$2y$10$v8ga/utd/6hTF8veHHo/zuCQ5t07E0Bz2nhmT5f0agPBUupe7AbTi');
 
 -- --------------------------------------------------------
 
@@ -172,7 +139,6 @@ INSERT INTO `skills` (`id`, `name`, `name_ar`, `icon_class`, `category`) VALUES
 
 CREATE TABLE `social_links` (
   `id` int(11) NOT NULL,
-  `profile_id` int(11) DEFAULT NULL,
   `platform_name` varchar(50) DEFAULT NULL,
   `icon_class` varchar(50) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL
@@ -182,10 +148,10 @@ CREATE TABLE `social_links` (
 -- Dumping data for table `social_links`
 --
 
-INSERT INTO `social_links` (`id`, `profile_id`, `platform_name`, `icon_class`, `url`) VALUES
-(1, NULL, 'GitHub', 'fab fa-github', 'https://github.com/'),
-(2, NULL, 'LinkedIn', 'fab fa-linkedin-in', 'https://www.linkedin.com/'),
-(4, NULL, 'Youtube', 'fab fa-youtube', 'https://www.youtube.com');
+INSERT INTO `social_links` (`id`, `platform_name`, `icon_class`, `url`) VALUES
+(1, 'GitHub', 'fab fa-github', 'https://github.com/'),
+(2, 'LinkedIn', 'fab fa-linkedin-in', 'https://www.linkedin.com/'),
+(4, 'Youtube', 'fab fa-youtube', 'https://www.youtube.com');
 
 --
 -- Indexes for dumped tables
@@ -204,12 +170,6 @@ ALTER TABLE `experience`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `profile_info`
---
-ALTER TABLE `profile_info`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `site_settings`
 --
 ALTER TABLE `site_settings`
@@ -225,8 +185,7 @@ ALTER TABLE `skills`
 -- Indexes for table `social_links`
 --
 ALTER TABLE `social_links`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `profile_id` (`profile_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -245,12 +204,6 @@ ALTER TABLE `experience`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `profile_info`
---
-ALTER TABLE `profile_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
@@ -261,16 +214,6 @@ ALTER TABLE `skills`
 --
 ALTER TABLE `social_links`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `social_links`
---
-ALTER TABLE `social_links`
-  ADD CONSTRAINT `social_links_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile_info` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
